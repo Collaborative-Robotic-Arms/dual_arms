@@ -24,7 +24,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="file:///home/mariamelsebaey/gp_ws/src/dual_arms/meshes/base_link.STL" />
+          filename="file:///home/omar-magdy/gp_ws/src/dual_arms/meshes/base_link.STL" />
       </geometry>
       <material
         name="">
@@ -38,7 +38,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="file:///home/mariamelsebaey/gp_ws/src/dual_arms/meshes/base_link.STL" />
+          filename="file:///home/omar-magdy/gp_ws/src/dual_arms/meshes/base_link.STL" />
       </geometry>
     </collision>
   </link>

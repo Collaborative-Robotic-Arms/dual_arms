@@ -36,7 +36,7 @@ def generate_launch_description():
     LD = LaunchDescription()
     
     # GAZEBO: world file
-    robot_gazebo = "/home/mariamelsebaey/gp_ws/src/worlds/empty_minimal.world"
+    robot_gazebo = "/home/omar-magdy/gp_ws/src/worlds/empty_minimal.world"
 
     # Bridge Node (optional; uncomment if needed)
     bridge = Node(
@@ -145,7 +145,7 @@ def generate_launch_description():
     )
     robot_description_semantic_config = load_file("dual_arms", "config/" + "dual_arms.srdf")
     robot_description_semantic = {"robot_description_semantic": robot_description_semantic_config}
-    kinematics_path = "/home/mariamelsebaey/gp_ws/install/dual_arms/share/dual_arms/config/kinematics.yaml"
+    kinematics_path = "/home/omar-magdy/gp_ws/install/dual_arms/share/dual_arms/config/kinematics.yaml"
     with open(kinematics_path, 'r') as f:
         kinematics_yaml = yaml.safe_load(f)
     kinematics_file = load_yaml("dual_arms", "config/kinematics.yaml")

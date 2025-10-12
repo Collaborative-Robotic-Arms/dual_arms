@@ -15,7 +15,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/mariamelsebaey/gp_ws/install/annin_ar4_description/share/annin_ar4_description/meshes/ar4_mk3/base_link.STL"/>
+        <mesh filename="file:///home/omar-magdy/gp_ws/install/annin_ar4_description/share/annin_ar4_description/meshes/ar4_mk3/base_link.STL"/>
       </geometry>
       <material name="">
         <color rgba="1 1 0 1"/>
@@ -24,7 +24,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/mariamelsebaey/gp_ws/install/annin_ar4_description/share/annin_ar4_description/meshes/ar4_mk3/base_link.STL"/>
+        <mesh filename="file:///home/omar-magdy/gp_ws/install/annin_ar4_description/share/annin_ar4_description/meshes/ar4_mk3/base_link.STL"/>
       </geometry>
     </collision>
   </link>
@@ -37,7 +37,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/mariamelsebaey/gp_ws/install/annin_ar4_description/share/annin_ar4_description/meshes/ar4_mk3/link_1.STL"/>
+        <mesh filename="file:///home/omar-magdy/gp_ws/install/annin_ar4_description/share/annin_ar4_description/meshes/ar4_mk3/link_1.STL"/>
       </geometry>
       <material name="">
         <color rgba="1 1 0 1"/>
@@ -46,7 +46,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/mariamelsebaey/gp_ws/install/annin_ar4_description/share/annin_ar4_description/meshes/ar4_mk3/link_1.STL"/>
+        <mesh filename="file:///home/omar-magdy/gp_ws/install/annin_ar4_description/share/annin_ar4_description/meshes/ar4_mk3/link_1.STL"/>
       </geometry>
     </collision>
   </link>
@@ -66,7 +66,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/mariamelsebaey/gp_ws/install/annin_ar4_description/share/annin_ar4_description/meshes/ar4_mk3/link_2.STL"/>
+        <mesh filename="file:///home/omar-magdy/gp_ws/install/annin_ar4_description/share/annin_ar4_description/meshes/ar4_mk3/link_2.STL"/>
       </geometry>
       <material name="">
         <color rgba="1 1 0 1"/>
@@ -75,7 +75,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/mariamelsebaey/gp_ws/install/annin_ar4_description/share/annin_ar4_description/meshes/ar4_mk3/link_2.STL"/>
+        <mesh filename="file:///home/omar-magdy/gp_ws/install/annin_ar4_description/share/annin_ar4_description/meshes/ar4_mk3/link_2.STL"/>
       </geometry>
     </collision>
   </link>
@@ -95,7 +95,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/mariamelsebaey/gp_ws/install/annin_ar4_description/share/annin_ar4_description/meshes/ar4_mk3/link_3.STL"/>
+        <mesh filename="file:///home/omar-magdy/gp_ws/install/annin_ar4_description/share/annin_ar4_description/meshes/ar4_mk3/link_3.STL"/>
       </geometry>
       <material name="">
         <color rgba="1 1 0 1"/>
@@ -104,7 +104,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/mariamelsebaey/gp_ws/install/annin_ar4_description/share/annin_ar4_description/meshes/ar4_mk3/link_3.STL"/>
+        <mesh filename="file:///home/omar-magdy/gp_ws/install/annin_ar4_description/share/annin_ar4_description/meshes/ar4_mk3/link_3.STL"/>
       </geometry>
     </collision>
   </link>
@@ -124,7 +124,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/mariamelsebaey/gp_ws/install/annin_ar4_description/share/annin_ar4_description/meshes/ar4_mk3/link_4.STL"/>
+        <mesh filename="file:///home/omar-magdy/gp_ws/install/annin_ar4_description/share/annin_ar4_description/meshes/ar4_mk3/link_4.STL"/>
       </geometry>
       <material name="">
         <color rgba="1 1 0 1"/>
@@ -133,7 +133,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/mariamelsebaey/gp_ws/install/annin_ar4_description/share/annin_ar4_description/meshes/ar4_mk3/link_4.STL"/>
+        <mesh filename="file:///home/omar-magdy/gp_ws/install/annin_ar4_description/share/annin_ar4_description/meshes/ar4_mk3/link_4.STL"/>
       </geometry>
     </collision>
   </link>
@@ -153,7 +153,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/mariamelsebaey/gp_ws/install/annin_ar4_description/share/annin_ar4_description/meshes/ar4_mk3/link_5.STL"/>
+        <mesh filename="file:///home/omar-magdy/gp_ws/install/annin_ar4_description/share/annin_ar4_description/meshes/ar4_mk3/link_5.STL"/>
       </geometry>
       <material name="">
         <color rgba="1 1 0 1"/>
@@ -162,7 +162,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/mariamelsebaey/gp_ws/install/annin_ar4_description/share/annin_ar4_description/meshes/ar4_mk3/link_5.STL"/>
+        <mesh filename="file:///home/omar-magdy/gp_ws/install/annin_ar4_description/share/annin_ar4_description/meshes/ar4_mk3/link_5.STL"/>
       </geometry>
     </collision>
   </link>
@@ -182,7 +182,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/mariamelsebaey/gp_ws/install/annin_ar4_description/share/annin_ar4_description/meshes/ar4_mk3/link_6.STL"/>
+        <mesh filename="file:///home/omar-magdy/gp_ws/install/annin_ar4_description/share/annin_ar4_description/meshes/ar4_mk3/link_6.STL"/>
       </geometry>
       <material name="">
         <color rgba="1 1 0 1"/>
@@ -191,7 +191,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/mariamelsebaey/gp_ws/install/annin_ar4_description/share/annin_ar4_description/meshes/ar4_mk3/link_6.STL"/>
+        <mesh filename="file:///home/omar-magdy/gp_ws/install/annin_ar4_description/share/annin_ar4_description/meshes/ar4_mk3/link_6.STL"/>
       </geometry>
     </collision>
   </link>
@@ -216,7 +216,7 @@
   <link name="ar4_gripper_base_link">
     <visual>
       <geometry>
-        <mesh filename="file:///home/mariamelsebaey/gp_ws/install/annin_ar4_description/share/annin_ar4_description/meshes/ar4_gripper/gripper_base_link.stl"/>
+        <mesh filename="file:///home/omar-magdy/gp_ws/install/annin_ar4_description/share/annin_ar4_description/meshes/ar4_gripper/gripper_base_link.stl"/>
       </geometry>
       <material name="">
         <color rgba="1 1 0 1"/>
@@ -224,7 +224,7 @@
     </visual>
     <collision>
       <geometry>
-        <mesh filename="file:///home/mariamelsebaey/gp_ws/install/annin_ar4_description/share/annin_ar4_description/meshes/ar4_gripper/gripper_base_link.stl"/>
+        <mesh filename="file:///home/omar-magdy/gp_ws/install/annin_ar4_description/share/annin_ar4_description/meshes/ar4_gripper/gripper_base_link.stl"/>
       </geometry>
     </collision>
     <inertial>
@@ -236,7 +236,7 @@
   <link name="ar4_gripper_jaw1_link">
     <visual>
       <geometry>
-        <mesh filename="file:///home/mariamelsebaey/gp_ws/install/annin_ar4_description/share/annin_ar4_description/meshes/ar4_gripper/gripper_jaw1_link.stl"/>
+        <mesh filename="file:///home/omar-magdy/gp_ws/install/annin_ar4_description/share/annin_ar4_description/meshes/ar4_gripper/gripper_jaw1_link.stl"/>
       </geometry>
       <material name="">
         <color rgba="1 1 0 1"/>
@@ -244,7 +244,7 @@
     </visual>
     <collision>
       <geometry>
-        <mesh filename="file:///home/mariamelsebaey/gp_ws/install/annin_ar4_description/share/annin_ar4_description/meshes/ar4_gripper/gripper_jaw1_link.stl"/>
+        <mesh filename="file:///home/omar-magdy/gp_ws/install/annin_ar4_description/share/annin_ar4_description/meshes/ar4_gripper/gripper_jaw1_link.stl"/>
       </geometry>
     </collision>
     <inertial>
@@ -256,7 +256,7 @@
   <link name="ar4_gripper_jaw2_link">
     <visual>
       <geometry>
-        <mesh filename="file:///home/mariamelsebaey/gp_ws/install/annin_ar4_description/share/annin_ar4_description/meshes/ar4_gripper/gripper_jaw2_link.stl"/>
+        <mesh filename="file:///home/omar-magdy/gp_ws/install/annin_ar4_description/share/annin_ar4_description/meshes/ar4_gripper/gripper_jaw2_link.stl"/>
       </geometry>
       <material name="">
         <color rgba="1 1 0 1"/>
@@ -264,7 +264,7 @@
     </visual>
     <collision>
       <geometry>
-        <mesh filename="file:///home/mariamelsebaey/gp_ws/install/annin_ar4_description/share/annin_ar4_description/meshes/ar4_gripper/gripper_jaw2_link.stl"/>
+        <mesh filename="file:///home/omar-magdy/gp_ws/install/annin_ar4_description/share/annin_ar4_description/meshes/ar4_gripper/gripper_jaw2_link.stl"/>
       </geometry>
     </collision>
     <inertial>
@@ -290,7 +290,7 @@
   </joint>
   <gazebo>
     <plugin filename="gz_ros2_control-system" name="gz_ros2_control::GazeboSimROS2ControlPlugin">
-      <parameters>/home/mariamelsebaey/gp_ws/install/dual_arms/share/dual_arms/config/dual_arms_controller.yaml</parameters>
+      <parameters>/home/omar-magdy/gp_ws/install/dual_arms/share/dual_arms/config/dual_arms_controller.yaml</parameters>
     </plugin>
   </gazebo>
   <ros2_control name="GazeboSimSystem" type="system">

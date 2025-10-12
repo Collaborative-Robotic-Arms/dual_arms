@@ -25,16 +25,7 @@
     <xacro:include filename="$(find ros2srrc_hmi)/urdf/hmicamera.urdf.xacro"/>
   </xacro:if>
 
-  <!-- World -->
-  <link name="world"/>
 
-  <!-- 🔹 AR4 Robot -->
-  <xacro:ar_robot
-    tf_prefix="$(arg tf_prefix)"
-    parent="world"
-    robot_parameters_file="$(find annin_ar4_description)/config/$(arg ar_model).yaml">
-    <origin xyz="0 0 0" rpy="0 0 -1.57"/>
-  </xacro:ar_robot>
 
   <!-- AR4 Gripper -->
   <xacro:if value="$(arg include_gripper)">
@@ -49,13 +40,6 @@
     robot_ip="$(arg robot_ip)"
     EE="$(arg EE)"
     EE_name="$(arg EE_name)"/>
-
-  <!-- IRB120 Fixed Joint to World with offset -->
-  <joint name="irb120_world_joint" type="fixed">
-    <parent link="world"/>
-    <child link="base_link"/>
-    <origin xyz="-1.2 0 0" rpy="0 0 0"/>
-  </joint>
 
   <!-- Optional: HMI Camera -->
   <xacro:if value="$(arg hmi)">

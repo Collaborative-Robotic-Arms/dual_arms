@@ -32,11 +32,32 @@ def load_yaml(package_name, file_path):
             return yaml.safe_load(file)
     except EnvironmentError:
         return None
+
+# --- Custom Function to read and process XACRO ---
+def load_xacro_content(package_name, file_path):
+    package_path = get_package_share_directory(package_name)
+    absolute_file_path = os.path.join(package_path, file_path)
+    
+    # Check if the file exists before parsing
+    if not os.path.exists(absolute_file_path):
+        print(f"Error: XACRO file not found at {absolute_file_path}")
+        return ""
+        
+    try:
+        # Use xacro package to process the XACRO file into a URDF string
+        # This replaces the need to manually parse and read the generated URDF
+        doc = xacro.process_file(absolute_file_path)
+        return doc.toprettyxml(indent='  ')
+    except Exception as e:
+        print(f"Error processing XACRO file {absolute_file_path}: {e}")
+        return ""
+# --------------------------------------------------
+
 def generate_launch_description():
     LD = LaunchDescription()
     
     # GAZEBO: world file
-    robot_gazebo = "/home/mariamelsebaey/gp_ws/src/worlds/empty_minimal.world"
+    robot_gazebo = "/home/omar-magdy/gp_ws/src/worlds/empty_minimal.world"
 
     # Bridge Node (optional; uncomment if needed)
     bridge = Node(
@@ -65,13 +86,21 @@ def generate_launch_description():
 
     # ROBOT DESCRIPTION:
     robot_description_path = get_package_share_directory("dual_arms")
-    xacro_file = os.path.join(robot_description_path, 'urdf', "dual_arms.urdf")
-    doc = xacro.parse(open(xacro_file))
-    doc_urdf = os.path.join(robot_description_path, 'urdf', 'dual_arms.urdf')
-    with open(doc_urdf, 'r') as file:
-        robot_description_config = file.read()
+
+    # --- START OF MERGED XACRO LOADING ---
+    # Load the new XACRO file that includes the environment.
+    xacro_file_name = "dual_arms_with_environment.xacro"
+    
+    # Use the custom function to process the XACRO content robustly.
+    robot_description_config = load_xacro_content("dual_arms", os.path.join('urdf', xacro_file_name))
+    
+    if not robot_description_config:
+        print("FATAL ERROR: XACRO loading failed. Returning empty launch description.")
+        return LaunchDescription() # Return empty LD if critical configuration fails
+
     robot_description = {'robot_description': robot_description_config}
-    #print("robot_description: ", robot_description)
+    # --- END OF MERGED XACRO LOADING ---
+    
     # Robot State Publisher Node:
     node_robot_state_publisher = Node(
         package='robot_state_publisher',
@@ -79,12 +108,14 @@ def generate_launch_description():
         output='both',
         parameters=[robot_description, {"use_sim_time": True}]
     )
+    # NOTE: The static_tf target frame is updated from 'base_link' to 'abb_table' 
+    # since the new XACRO likely uses the environment as the root link.
     static_tf = Node(
         package="tf2_ros",
         executable="static_transform_publisher",
         name="static_transform_publisher",
         output="log",
-        arguments=["0.0", "0.0", "0.0", "0.0", "0.0", "0.0", "world", "base_link"],
+        arguments=["0.0", "0.0", "0.0", "0.0", "0.0", "0.0", "world", "abb_table"],
     )
 
     # Spawn Robot in Gazebo:
@@ -142,7 +173,7 @@ def generate_launch_description():
     arguments=['gripper_controller',"--param-file", ros2_controllers],
     output='screen'
     )
-    # dual_arms_controller_spawner = Node(
+    # dual_arms_controller_spawner = Node( # This remains commented out from the original file
     # package='controller_manager',
     # executable='spawner',
     # arguments=['dual_arms_controller',"--param-file", ros2_controllers],
@@ -150,7 +181,7 @@ def generate_launch_description():
     # )
     robot_description_semantic_config = load_file("dual_arms", "config/" + "dual_arms.srdf")
     robot_description_semantic = {"robot_description_semantic": robot_description_semantic_config}
-    kinematics_path = "/home/mariamelsebaey/gp_ws/install/dual_arms/share/dual_arms/config/kinematics.yaml"
+    kinematics_path = "/home/omar-magdy/gp_ws/install/dual_arms/share/dual_arms/config/kinematics.yaml"
     with open(kinematics_path, 'r') as f:
         kinematics_yaml = yaml.safe_load(f)
     kinematics_file = load_yaml("dual_arms", "config/kinematics.yaml")
@@ -267,8 +298,8 @@ def generate_launch_description():
     LD.add_action(static_tf)
     LD.add_action(spawn_entity)
     LD.add_action(ros2_control_node)
-    # Uncomment the bridge below if you need it:
-    LD.add_action(bridge)
+    LD.add_action(bridge) # Bridge node is included from the original file
+
     
     # Schedule controllers after a short delay
     LD.add_action(TimerAction(
@@ -283,7 +314,7 @@ def generate_launch_description():
         period=1.5,
         actions=[irb120_trajectory_controller_spawner]
     ))
-    # LD.add_action(TimerAction(
+    # LD.add_action(TimerAction( # Keeping this commented out as it was in the base file
     #     period=1.5,
     #     actions=[dual_arms_controller_spawner]
     # ))
@@ -293,23 +324,17 @@ def generate_launch_description():
     ))
     # Schedule MoveIt!2 nodes after spawn_entity with a 2 second delay
     LD.add_action(TimerAction(
-        period=4.0,
+        period=4.0, # Kept the original 4.0 second delay
         actions=[rviz_node_full, run_move_group_node]
     ))
     
     # Schedule custom interfaces with a 5 second delay
     LD.add_action(TimerAction(
-        period=6.0,
+        period=6.0, # Kept the original 6.0 second delay
         actions=[MoveInterface, RobPoseInterface, RobMoveInterface]
     ))
-
-    # LD.add_action(TimerAction(
-    #     period=1.0,
-    #     actions=[ros2_control_node] 
-    # ))
     
     return LD
 
 if __name__ == '__main__':
     ld = generate_launch_description()
-

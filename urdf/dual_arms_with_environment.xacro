@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+<robot name="dual_arms_with_environment" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <link name="world"/>
+
+  <xacro:include filename="dual_arms.urdf" />
+
+  <xacro:include filename="$(find assembly_environment)/urdf/environment.xacro" />
+
+  <joint name="world_to_environment_joint" type="fixed">
+    <parent link="world"/>
+    <child link="abb_table"/> 
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+
+  <joint name="irb120_on_table_joint" type="fixed">
+    <parent link="abb_table"/>
+    <child link="base_link"/> <!-- Assumed root link of IRB120 arm -->
+    <origin xyz="0 0 0" rpy="0 0 0"/> 
+  </joint>
+
+  <joint name="ar4_on_table_joint" type="fixed">
+    <parent link="ar4_table"/>
+    <child link="ar4_base_link"/> <!-- Assumed root link of AR4 arm -->
+    <origin xyz="0 0 0" rpy="0 0 0"/> 
+  </joint>
+
+</robot>
