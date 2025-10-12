@@ -1,0 +1,93 @@
+trajectory_execution:
+  allowed_execution_duration_scaling: 1.2
+  allowed_goal_duration_margin: 0.5
+  allowed_start_tolerance: 0.01
+
+moveit_controller_manager: moveit_simple_controller_manager/MoveItSimpleControllerManager
+
+controller_names:
+  - ar4_trajectory_controller
+  - irb120_trajectory_controller
+  - gripper_controller
+  - irb120_gripper_controller
+  - dual_arms_controller
+
+ar4_trajectory_controller:
+  action_ns: follow_joint_trajectory
+  type: FollowJointTrajectory
+  default: true
+  joints:
+    - ar4_joint_1
+    - ar4_joint_2
+    - ar4_joint_3
+    - ar4_joint_4
+    - ar4_joint_5
+    - ar4_joint_6
+irb120_trajectory_controller:
+  action_ns: follow_joint_trajectory
+  type: FollowJointTrajectory
+  default: true
+  joints:
+    - joint_1
+    - joint_2
+    - joint_3
+    - joint_4
+    - joint_5
+    - joint_6
+
+# dual_arms_controller:
+#   action_ns: follow_joint_trajectory 
+#   type: FollowJointTrajectory
+#   default: false # Only use this when planning for the combined dual_arms group
+#   joints:
+#     # AR4 Joints
+#     - ar4_joint_1
+#     - ar4_joint_2
+#     - ar4_joint_3
+#     - ar4_joint_4
+#     - ar4_joint_5
+#     - ar4_joint_6
+#     # IRB120 Joints
+#     - joint_1
+#     - joint_2
+#     - joint_3
+#     - joint_4
+#     - joint_5
+#     - joint_6
+
+dual_arms_controller:
+  type: FollowJointTrajectory
+  default: true 
+  joints:
+    # AR4 Joints
+    - ar4_joint_1
+    - ar4_joint_2
+    - ar4_joint_3
+    - ar4_joint_4
+    - ar4_joint_5
+    - ar4_joint_6
+    # IRB120 Joints
+    - joint_1
+    - joint_2
+    - joint_3
+    - joint_4
+    - joint_5
+    - joint_6
+  dependencies:
+    - ar4_trajectory_controller
+    - irb120_trajectory_controller
+
+gripper_controller:
+  action_ns: gripper_cmd
+  type: GripperCommand
+  default: true
+  joints:
+    - ar4_gripper_jaw1_joint
+    - ar4_gripper_jaw2_joint
+irb120_gripper_controller:
+  action_ns: gripper_cmd
+  type: GripperCommand
+  default: true
+  joints:
+    - left_joint
+    - right_joint

@@ -1,0 +1,38 @@
+# irb120_arm:
+#   kinematics_solver: kdl_kinematics_plugin/KDLKinematicsPlugin
+#   kinematics_solver_search_resolution: 0.005
+#   kinematics_solver_timeout: 0.05
+
+# ar_manipulator:
+#   kinematics_solver: ar4_ar_manipulator_ikfast_plugin/IKFastKinematicsPlugin
+#   kinematics_solver_search_resolution: 0.005
+#   kinematics_solver_timeout: 0.005
+
+# dual_arms:
+#   kinematics_solver: kdl_kinematics_plugin/KDLKinematicsPlugin
+#   kinematics_solver_search_resolution: 0.01  # Slightly coarser resolution is okay for super group
+#   kinematics_solver_timeout: 0.2  # Super group IK may take more time, so increase timeout
+
+# irb120_arm:
+#   kinematics_solver: irb120_irb120_arm_ikfast_plugin/IKFastKinematicsPlugin
+#   kinematics_solver_search_resolution: 0.005
+#   kinematics_solver_timeout: 0.005
+
+# irb120_arm:
+#   kinematics_solver: irb120_irb120_arm_ikfast_plugin/IKFastKinematicsPlugin
+#   kinematics_solver_search_resolution: 0.005   
+#   kinematics_solver_timeout: 0.05            
+# ar_manipulator:
+#   kinematics_solver: ar4_ar_manipulator_ikfast_plugin/IKFastKinematicsPlugin
+#   kinematics_solver_search_resolution: 0.005
+#   kinematics_solver_timeout: 0.05
+
+irb120_arm:
+  kinematics_solver: irb120_irb120_arm/IKFastKinematicsPlugin
+  kinematics_solver_search_resolution: 0.005
+  kinematics_solver_timeout: 0.005
+
+ar_manipulator:
+  kinematics_solver: ar4_ar_manipulator/IKFastKinematicsPlugin
+  kinematics_solver_search_resolution: 0.005
+  kinematics_solver_timeout: 0.005
