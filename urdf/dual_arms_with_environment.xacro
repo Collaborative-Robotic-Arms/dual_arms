@@ -19,7 +19,7 @@
     tf_prefix="ar4_"
     parent="ar4_table"
     robot_parameters_file="$(find annin_ar4_description)/config/mk3.yaml">
-    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <origin xyz="0 0 0" rpy="0 0 1.5708"/>
   </xacro:ar_robot>
   <xacro:ar_gripper
     tf_prefix="ar4_"
