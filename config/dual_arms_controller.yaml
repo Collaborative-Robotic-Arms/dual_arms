@@ -1,19 +1,22 @@
+# dual_arms/config/dual_arms_controller.yaml
+
 controller_manager:
   ros__parameters:
     update_rate: 250  # Hz
+
+    # Define the controller types available to the manager
     ar4_trajectory_controller:
       type: joint_trajectory_controller/JointTrajectoryController
     irb120_trajectory_controller:
       type: joint_trajectory_controller/JointTrajectoryController
     gripper_controller:
       type: position_controllers/GripperActionController
-    # dual_arms_controller:
-    #   type: joint_trajectory_controller/JointTrajectoryController
     joint_state_broadcaster:
       type: joint_state_broadcaster/JointStateBroadcaster
     irb120_gripper_controller:
       type: position_controllers/GripperActionController
 
+# Configuration for the AR4 arm controller
 ar4_trajectory_controller:
   ros__parameters:
     joints:
@@ -28,14 +31,10 @@ ar4_trajectory_controller:
     state_interfaces:
       - position
       - velocity
-    allow_partial_joints_goal: false
-    open_loop_control: true
     state_publish_rate: 250.0
     action_monitor_rate: 20.0
-    constraints:
-      stopped_velocity_tolerance: 0.0
-      goal_time: 0.0
 
+# Configuration for the IRB120 arm controller
 irb120_trajectory_controller:
   ros__parameters:
     joints:
@@ -50,58 +49,20 @@ irb120_trajectory_controller:
     state_interfaces:
       - position
       - velocity
-    allow_partial_joints_goal: false
-    open_loop_control: true
     state_publish_rate: 250.0
     action_monitor_rate: 20.0
-    constraints:
-      stopped_velocity_tolerance: 0.0
-      goal_time: 0.0
 
-# dual_arms_controller:
-#   ros__parameters:
-#     joints:
-#       # All joints of the AR4 arm
-#       - ar4_joint_1
-#       - ar4_joint_2
-#       - ar4_joint_3
-#       - ar4_joint_4
-#       - ar4_joint_5
-#       - ar4_joint_6
-#       # All joints of the IRB120 arm
-#       - joint_1
-#       - joint_2
-#       - joint_3
-#       - joint_4
-#       - joint_5
-#       - joint_6
-#     command_interfaces:
-#       - position
-#     state_interfaces:
-#       - position
-#       - velocity
-#     open_loop_control: true
-#     allow_partial_joints_goal: false
-#     state_publish_rate: 250.0
-#     action_monitor_rate: 20.0
-#     constraints:
-#       stopped_velocity_tolerance: 0.0
-#       goal_time: 0.0
-
+# Configuration for the AR4 gripper controller
 gripper_controller:
   ros__parameters:
-    joint: ar4_gripper_jaw1_joint
-    command_interface: position
-    state_interfaces:
-      - position
-      - velocity
-    action_monitor_rate: 20.0
+    joint: ar4_gripper_jaw1_joint # Controls the primary jaw, the other mimics it
 irb120_gripper_controller:
   ros__parameters:
-    joint: left_joint
-    command_interface: position
-    state_interfaces:
-      - position
-      - velocity
-    action_monitor_rate: 20.0
-
+    # We only need to control one joint; the other is mimicked in the URDF.
+    joint: ABB_Gripper_Finger_1_Joint
+    command_interface: effort # Matches your URDF
+    # PID values are needed to translate the position goal into an effort command
+    pid:
+      p: 50.0
+      i: 0.1
+      d: 1.0

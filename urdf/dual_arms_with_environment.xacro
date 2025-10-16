@@ -1,28 +1,32 @@
 <?xml version="1.0" ?>
-<robot name="dual_arms_with_environment" xmlns:xacro="http://ros.org/wiki/xacro">
-
-  <link name="world"/>
-
-  <xacro:include filename="dual_arms.urdf" />
+<robot name="dual_arms_with_environment" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
   <xacro:include filename="$(find assembly_environment)/urdf/environment.xacro" />
+  <xacro:include filename="$(find annin_ar4_description)/urdf/ar_macro.xacro" />
+  <xacro:include filename="$(find annin_ar4_description)/urdf/ar_gripper_macro.xacro" />
+  <xacro:include filename="$(find dual_arms)/urdf/irb120_wrapper.xacro" /> <xacro:include filename="$(find dual_arms)/urdf/dual_arms.gazebo.xacro" />
+  <xacro:include filename="$(find abb_gripper_urdf)/urdf/abb_gripper.urdf.xacro" />
+  <link name="world"/>
 
+  <xacro:environment/>
   <joint name="world_to_environment_joint" type="fixed">
     <parent link="world"/>
-    <child link="abb_table"/> 
+    <child link="abb_table"/>
+    <origin xyz="0.3325 0 1.1" rpy="0 0 0"/>
+  </joint>
+
+  <xacro:ar_robot
+    tf_prefix="ar4_"
+    parent="ar4_table"
+    robot_parameters_file="$(find annin_ar4_description)/config/mk3.yaml">
     <origin xyz="0 0 0" rpy="0 0 0"/>
-  </joint>
+  </xacro:ar_robot>
+  <xacro:ar_gripper
+    tf_prefix="ar4_"
+    parent="ar4_ee_link"/>
 
-  <joint name="irb120_on_table_joint" type="fixed">
-    <parent link="abb_table"/>
-    <child link="base_link"/> <!-- Assumed root link of IRB120 arm -->
-    <origin xyz="0 0 0" rpy="0 0 0"/> 
-  </joint>
-
-  <joint name="ar4_on_table_joint" type="fixed">
-    <parent link="ar4_table"/>
-    <child link="ar4_base_link"/> <!-- Assumed root link of AR4 arm -->
-    <origin xyz="0 0 0" rpy="0 0 0"/> 
-  </joint>
-
+  <xacro:irb120_mounted parent="abb_table">
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </xacro:irb120_mounted>
+  <xacro:abb_gripper arm_parent_link="tool0" gripper_prefix="gripper_"/>
 </robot>

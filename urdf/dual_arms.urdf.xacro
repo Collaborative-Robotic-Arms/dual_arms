@@ -14,7 +14,7 @@
   <xacro:arg name="EE_name" default="none"/>
 
   <!-- AR4 Includes -->
-  <xacro:include filename="$(find annin_ar4_description)/urdf/ar_macro.xacro"/>
+  <xacro:include filename="$(find annin_ar4_description)/urdf/ar.urdf.xacro"/>
   <xacro:include filename="$(find annin_ar4_description)/urdf/ar_gripper_macro.xacro"/>
 
   <!-- ABB IRB120 Includes -->
@@ -53,4 +53,3 @@
   </xacro:if>
 
 </robot>
-
