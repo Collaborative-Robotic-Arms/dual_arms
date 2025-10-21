@@ -91,7 +91,12 @@ ament_target_dependencies(dual_arms_controller
 )
 
 
-install(DIRECTORY config launch srdf urdf meshes DESTINATION share/${PROJECT_NAME})
+# Install the marker model
+# install(DIRECTORY models/aruco_marker_42
+#   DESTINATION share/${PROJECT_NAME}/models
+# )
+
+install(DIRECTORY config launch srdf urdf meshes worlds DESTINATION share/${PROJECT_NAME})
 install(TARGETS dual_arms_controller
   DESTINATION lib/${PROJECT_NAME})
 # ==============================
