@@ -34,21 +34,36 @@ def generate_launch_description():
             os.path.join(get_package_share_directory('dual_arms'), '..')
         ]
     )
-    
-    # Launch Gazebo
+    pkg_share = get_package_share_directory('dual_arms')
+
+    # --- 2. BUILD THE FULL PATH TO YOUR SDF FILE ---
+    world_file_path = os.path.join(pkg_share, 'worlds', 'dual.sdf')
+
+    # --- 3. PASS THE FULL PATH TO GAZEBO ---
     gazebo = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             os.path.join(get_package_share_directory('ros_gz_sim'), 'launch', 'gz_sim.launch.py')
         ),
-        launch_arguments={'gz_args': '-r empty.sdf'}.items()
+        # Use an f-string to inject the full path
+        launch_arguments={'gz_args': f'-r {world_file_path}'}.items()
+    )
+ 
+    # Gazebo-ROS2 Bridge Nodes
+    bridge_params = os.path.join(get_package_share_directory('dual_arms'),'config','gz_bridge.yaml')
+    ros_gz_bridge = Node(
+        package="ros_gz_bridge",
+        executable="parameter_bridge",
+        arguments=[
+            '--ros-args',
+            '-p',
+            f'config_file:={bridge_params}',
+        ]
     )
 
-    # Launch Clock Bridge
-    clock_bridge = Node(
-        package='ros_gz_bridge',
-        executable='parameter_bridge',
-        arguments=['/clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock'],
-        output='screen'
+    ros_gz_image_bridge = Node(
+        package="ros_gz_image",
+        executable="image_bridge",
+        arguments=["/cameraAR4/image_raw"]
     )
 
     # Robot Description
@@ -79,14 +94,17 @@ def generate_launch_description():
         package="controller_manager", executable="spawner",
         arguments=["joint_state_broadcaster", "--controller-manager", "/controller_manager"],
     )
+
     ar4_controller_spawner = Node(
         package="controller_manager", executable="spawner",
         arguments=["ar4_trajectory_controller", "--controller-manager", "/controller_manager"],
     )
+
     irb120_controller_spawner = Node(
         package="controller_manager", executable="spawner",
         arguments=["irb120_trajectory_controller", "--controller-manager", "/controller_manager"],
     )
+
     irb120_gripper_controller_spawner = Node(
         package="controller_manager", executable="spawner",
         arguments=["irb120_gripper_controller", "--controller-manager", "/controller_manager"],
@@ -150,15 +168,43 @@ def generate_launch_description():
         parameters=[robot_description, robot_description_semantic, ompl_planning_pipeline_config, robot_description_kinematics, robot_description_planning],
     )
 
+    # Bridge
+    bridge_node = Node(
+        package='ros_gz_image',
+        executable='image_bridge',
+        arguments=['camera', 'depth_camera', 'rgbd_camera/image', 'rgbd_camera/depth_image'],
+        output='screen'
+    )
+
+    # pkg_my_package = get_package_share_directory('dual_arms')
+    
+    # # Path to your marker's SDF file
+    # model_path = os.path.join(pkg_my_package, 'models', 'aruco_marker_42', 'model.sdf')
+
+    # # Spawn the marker
+    # spawn_marker = Node(
+    #     package='ros_gz_sim',
+    #     executable='create',
+    #     arguments=[
+    #         '-file', model_path,
+    #         '-name', 'my_marker',
+    #         '-x', '1.0',
+    #         '-y', '0.5',
+    #         '-z', '0.2'
+    #     ],
+    #     output='screen'
+    # )
+
     # Launch Description Assembly
     return LaunchDescription([
         gz_resource_path,
         gazebo,
-        clock_bridge,
         robot_state_publisher_node,
         spawn_entity,
         move_group_node,
         rviz_node,
+        ros_gz_bridge,
+        ros_gz_image_bridge,
         RegisterEventHandler(
             OnProcessExit(target_action=spawn_entity, on_exit=[joint_state_broadcaster_spawner])
         ),
